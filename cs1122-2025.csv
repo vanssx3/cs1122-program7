@@ -1,5 +1,5 @@
 Username,Rank,Title,Artist,Genre,Album,Number of Plays
-EzI6psdcyE,8,The World We Knew (Over and Over),Frank Sinatra,Traditional Pop/Jazz,The World We Knew,200ish times
+EzI6psdcyE,8,The World We Knew (Over and Over),Frank Sinatra,Traditional Pop/Jazz,The World We Knew,200
 ewMPQm7LCw,1,You're the Inspiration,Chicago,Rock,Chicago 17,50
 RDXRSUA19I,10,See You Again,Tyler the Creator Ft Kali Uchis,Hip-Hop/Rap,Flower Boy,109
 6ue4Mbvoft,10,m.A.D.D city,"Kendrick Lamar, MC Eiht",Rap,"Good Kid, M.A.D.D City",500
@@ -24,7 +24,7 @@ EzI6psdcyE,4,Nero Forte,Slipknot,Nu Metal,We Are Not Your Kind,300
 ewMPQm7LCw,5,The Longest Time,Billy Joel,Pop/Rock,An Innocent Man,60
 RDXRSUA19I,5,Decode,Paramore,Alternative ,Twilight motion Picture Sound track (Paramore)),60
 6ue4Mbvoft,6,My Axe,Insane Clown Posse,Horrorcore,Jugganauts,600
-EzI6psdcyE,5,Die With A Smile,"Bruno Mars, Lady Gaga",Soft Rock,Die With A Smile (It was a single),6
+EzI6psdcyE,5,Die With A Smile,"Bruno Mars, Lady Gaga",Soft Rock,Die With A Smile,6
 RDXRSUA19I,4,"Lover, You Should've Come Over",Jeff Buckley ,Rock,Grace,100
 TEHqbHLFqx,1,Glorious,Macklemore,Pop,Single,300
 6ue4Mbvoft,5,Fallout 76: Ring of Fire,"Copilot Music + Sound, Spank",Country,Fallout 76,600
@@ -143,9 +143,9 @@ d6b4nyADX1,7,Scenes from an Italian Restaurant,Billy Joel,Rock,The Stranger,60
 d6b4nyADX1,6,Wholeheartedly,JID,Rap,God Does Like Ugly,35
 d6b4nyADX1,5,DARE,Gorillaz, Alternative,Demon Days,45
 d6b4nyADX1,4,Digital Love,Daft Punk,Dance,Discovery,30
-d6b4nyADX1,3,Alright,Kendrick Lamar,Rap,To Pimp a Butterfly,150+
-d6b4nyADX1,2,Ivy,Frank Ocean,Pop,Blonde,100+
-d6b4nyADX1,1,GONE GONE / THANKYOU,Tyler the Creator,Rap,IGOR,150+
+d6b4nyADX1,3,Alright,Kendrick Lamar,Rap,To Pimp a Butterfly,150
+d6b4nyADX1,2,Ivy,Frank Ocean,Pop,Blonde,100
+d6b4nyADX1,1,GONE GONE / THANKYOU,Tyler the Creator,Rap,IGOR,150
 aJqyRoyI27,5,echoes,xxsagexx,EDM,september 2024,250
 RYzSjSc0fl,1,Kawakinoameku,Minami,Pop,Kawaki wo Ameku,250
 RYzSjSc0fl,2,Fukashigi no Carte,"Kubo Yurika, Minase Inori, Seto Asami, Tanezaki Atsumi, Touyama Nao, Uchida Maaya",Pop,N/A,200
@@ -177,7 +177,7 @@ PaA281p1ET,10,Come On Eileen,Dexys Midnight Runners,Pop rock,Too Rye Ay,40
 6nNNXGgKHD,3,Baby,Charli xcx,Pop,Crash,10
 6nNNXGgKHD,2,Pier 4 ,Clairo,Indie,Charm,11
 6nNNXGgKHD,1,Yuck,Charli xcx,Pop,Crash,12
-9LUoQrt9I4,1,Brand New Numb,Motionless In white,Alternative Metal,Disguise ,100?
+9LUoQrt9I4,1,Brand New Numb,Motionless In white,Alternative Metal,Disguise ,100
 9LUoQrt9I4,2,Stuck,Villain Of the Story,Metalcore,Bloodshot,80
 9LUoQrt9I4,3,Doomed,I prevail,Metalcore,True Power,50
 9LUoQrt9I4,4,All the ways I could Die,Arrows in Action,Alternative Rock,Be More,30
@@ -389,16 +389,16 @@ Vn6YU1N4oP,9,What It Sounds Like,HUNTR/X (TWICE),KPop,KPop Demon Hunters Soundtr
 Vn6YU1N4oP,10,Matcha,Wic Whitney,Rap,Matcha,90
 mBz9FO5uqn,5,Jigsaw,Conan Gray,indie pop,Superache,130
 mBz9FO5uqn,3,When She Smiles,Gigi Perez,Indie,How to Catch A Falling Knife,100
-p6CtT0Xo8A,1,Lovefool,The Cardigans,Alternative/indie,First Band on the Moon,~210
-p6CtT0Xo8A,2,Something's Wrong with the Morning,Margo Guryan,Folk-pop,27 Demos,~60
-p6CtT0Xo8A,3,Roadhouse Blues,The Doors,Blues-rock,Morrison Hotel,~230
-p6CtT0Xo8A,4,Green Onions,Booker T. & the M.G.'s,Soul,Green Onions,~110
+p6CtT0Xo8A,1,Lovefool,The Cardigans,Alternative/indie,First Band on the Moon,210
+p6CtT0Xo8A,2,Something's Wrong with the Morning,Margo Guryan,Folk-pop,27 Demos,60
+p6CtT0Xo8A,3,Roadhouse Blues,The Doors,Blues-rock,Morrison Hotel,230
+p6CtT0Xo8A,4,Green Onions,Booker T. & the M.G.'s,Soul,Green Onions,110
 p6CtT0Xo8A,5,Peace Frog,The Doors,Blues rock,Morrison Hotel,~240
-p6CtT0Xo8A,6,Apple Tree,Wolfmother,Hard rock,Wolfmother,~140
-p6CtT0Xo8A,7,Lonely Mess,Laundry,Indie rock,Affirmation,~730
-p6CtT0Xo8A,8,There Is a Light That Never Goes Out,The Smiths,Alternative/indie,The Queen Is Dead,~90
-p6CtT0Xo8A,9,I Love You So,The Walters,Alternative/indie,Songs for Dads,~340
-p6CtT0Xo8A,10,Lovers Rock,TV Girl,Electronic,French Exit,~500
+p6CtT0Xo8A,6,Apple Tree,Wolfmother,Hard rock,Wolfmother,140
+p6CtT0Xo8A,7,Lonely Mess,Laundry,Indie rock,Affirmation,730
+p6CtT0Xo8A,8,There Is a Light That Never Goes Out,The Smiths,Alternative/indie,The Queen Is Dead,90
+p6CtT0Xo8A,9,I Love You So,The Walters,Alternative/indie,Songs for Dads,340
+p6CtT0Xo8A,10,Lovers Rock,TV Girl,Electronic,French Exit,500
 81a53gITA9,1,Resonance,HOME,Instrumental,Odyssey,472
 81a53gITA9,2,Sweater Weather,The Neighbourhood,Alternative,I Love You.,210
 81a53gITA9,3,Lovers,Anna of the North,Alternative,Lovers,63
@@ -704,3 +704,4 @@ IeaYESmMDP,10,The spins,Mac miller,Rap,the kids,50
 67zfR9D052,7,Short Change Hero,The Heavy,Alternative,The House that Dirt Built,68
 67zfR9D052,6,Radio,Bershy,Alternative,Radio,35
 67zfR9D052,4,Roll Northumbria,The Dreadnoughts,Shanty,Into the North,48
+
