@@ -1,3 +1,7 @@
+/**
+ * Authors:
+ * Darius Lakas dtlakas@mtu.edu
+*/
 public class TrackRecommender {
 
     /**
