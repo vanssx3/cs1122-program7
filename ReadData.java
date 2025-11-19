@@ -1,3 +1,7 @@
+/**
+ * Authors:
+ * Darius Lakas dtlakas@mtu.edu
+*/
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -29,7 +33,8 @@ public class ReadData {
     public void addTrack(HashMap<String, ArrayList<TrackInfo>> map, String user,
 			 int rank, String title, String artist, String album,
 			 String genre, int plays) {
-	
+		ArrayList<TrackInfo> elements = map.get(user);
+		TrackInfo element = new TrackInfo(user, rank, title, artist, album, genre, plays);
     }
 
     /**
