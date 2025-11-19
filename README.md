@@ -1,3 +1,25 @@
+# Pre-processing the Dataset
+The data from the survey will be released in an announcement after the Part 1 deadline. The dataset will be anonymized with fake user ids that have no relationship to their actual user ids.
+
+In your groups, discuss the data gather by the survey to accomplish the following:
+
+Agree upon the validity of the data for use at generating recommendations and make changes to assure validity. This might include the following.
+Discussing the removal or amendment of particular entries for misspellings or nonsensical inputs.
+Organizing, understanding, and documenting the data. This might include creating graphs or data visualizations.
+Highlighting possible short-comings or flaws in data collection or data presentation that will limit recommendation quality.
+You will need to agree on a minimal set of genres.
+Count the number of entries for each genre.
+Check to see if you agree that each reported song is in that genre.
+Check if any genres can be merged; e.g., should "comedy" and "pardoy" be merged.
+It could also help to standardize to all uppercase or all lowercase strings for these genres.
+As part of your reflection document for this program, include the following. Please respond to each with a paragraph response.
+
+If you removed or altered any entries in the dataset, please give a detailed description as to why, include the data that was removed. Discuss what implications might exist from removing or changing it and how you dealt with those implications in your project.
+Detail your chosen list of genres. Discuss how this list was agreed upon and what implications it might have on your recommendation system. What genres might be missing from your list? Why are they missing?
+Include at least two tables or graphs that examine a particular aspect of the dataset. For example, a bar graph of included genres, table of popular artists, or list of the most played songs. You should explain your choice of graph.
+What short-comings or flaws do you see in the way in which we collected data. If you had to collect data like this again, what would you change, and why.
+
+
 # In your groups, discuss the data gather by the survey to accomplish the following:
 
 Agree upon the validity of the data for use at generating recommendations and make changes to assure validity. This might include the following.
