@@ -129,3 +129,5 @@ fieldName and method should be the exact same as calculateSimilarity.
 
 # Problem 3: makePlaylist
 Having calculated the similarity with all other users, make a playlist of tracks from the most similar users. Start with the user with the highest similarity score, adding their tracks, and continuing to the user with the next highest similarity score, and so on. Stop when either the specified number of tracks has been added or there are no more users available. Use the following method header.
+
+``ArrayList<TrackInfo> makePlaylist(String user, String fieldName, String method, int numberOfTracks)``
