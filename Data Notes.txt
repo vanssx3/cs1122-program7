@@ -1,0 +1,17 @@
+﻿We removed all slashes and quotations, and translated all non-english characters to english. We changed all the singles album names to be the singles name. We removed any parentheses. We also made sure that if there are multiple artists on a song, they are separated by commas. If someone’s name contains a comma, we will remove it for consistency sake. 
+
+Genre:
+Pop
+Rock
+Rap
+R&B
+Metal
+Jazz
+Folk
+Alternative
+EDM
+Indie
+Country
+Video Soundtrack
+Lofi
+Orchestral 
