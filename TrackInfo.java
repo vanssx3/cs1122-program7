@@ -11,7 +11,7 @@ public class TrackInfo {
     /**
      * String title: The title of the track.
      */
-    private Stirng title = "";
+    private String title = "";
 
     /**
      * String artist: The artist's name.
@@ -87,7 +87,7 @@ public class TrackInfo {
 	this.album = album;
     }
 
-    public void setGenre(Stirng genre) {
+    public void setGenre(String genre) {
 	this.genre = genre;
     }
 
