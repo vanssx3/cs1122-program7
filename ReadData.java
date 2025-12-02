@@ -4,6 +4,7 @@
 */
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.io.File;
 import java.util.Scanner;
 import java.util.HashSet;
 
@@ -40,7 +41,7 @@ public class ReadData {
 			 int rank, String title, String artist, String album,
 			 String genre, int plays) {
 	ArrayList<TrackInfo> elements = map.get(user);
-	TrackInfo element = new TrackInfo(user, rank, title, artist, album, genre, plays);
+	TrackInfo element = new TrackInfo(user, title, artist, album, genre, rank, plays);
 	if (!elements.contains(element)) {
 		elements.add(element);
 	}
@@ -66,14 +67,14 @@ public class ReadData {
 	    //if the data is properly formatted, this shouldn't error out.
 	    while (scan.hasNext()) {
 		    user = scan.next();
-		    rank = (int) scan.next(); //this is important because
+		    rank = Integer.parseInt(scan.next()); //this is important because
 					      //we don't want to skip ahead
 		    title = scan.next();
 		    artist = scan.next();
 		    genre = scan.next();
 		    album = scan.next();
-		    plays = (int) scan.next();
-		    addTrack(user, rank, title, artist, album, genre, plays);
+		    plays = Integer.parseInt(scan.next());
+		    addTrack(user, title, artist, album, genre, rank, plays);
 	    }
 	    scan.close();
     }
@@ -88,7 +89,7 @@ public class ReadData {
 	//disregarding users, retrieving all ArrayLists
 	//note that the HashSet is backed by the HashMap so don't modify that
 	//this is a non-destructive method
-	HashSet<ArrayList<TrackInfo>> elements = map.values();
+	HashSet<> elements = map.values();
 	//the data is now iterable
 	Iterator<ArrayList<TrackInfo>> elemIter = elements.iterator();
 	HashSet<String> genreArtists = new HashSet();
