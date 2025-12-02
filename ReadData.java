@@ -77,7 +77,7 @@ public class ReadData {
 	    }
 	    scan.close();
     }
-:
+
     /**
      * Generate a list of all artists associated with a given genre in ~userTrackMap~
      *
@@ -105,6 +105,11 @@ public class ReadData {
 	//this should work because HashSet is a collection
 	return new ArrayList<String>(genreArtists);
     }
+
+    public String toString() {
+	System.out.println(userTrackMap)
+    }
+
 
     public static void main(String[] args) {
 	ReadData rd = new ReadData();
