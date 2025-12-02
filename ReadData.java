@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.io.File;
 import java.util.Scanner;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.io.FileNotFoundException;
 
 public class ReadData {
 
@@ -61,7 +63,7 @@ public class ReadData {
     public void readInput(String filename) {
 	    //I suppose there is a way to use streams but we just learned that
 	    File inputfile = new File(filename);
-	    Scanner scan = new Scanner(inputfile);
+	    try(Scanner scan = new Scanner(inputfile)) {
 	    String user, title, artist, album, genre;
 	    int rank, plays;
 	    //if the data is properly formatted, this shouldn't error out.
@@ -74,9 +76,11 @@ public class ReadData {
 		    genre = scan.next();
 		    album = scan.next();
 		    plays = Integer.parseInt(scan.next());
-		    addTrack(user, title, artist, album, genre, rank, plays);
+		    addTrack(userTrackMap, user, rank, title, artist, album, genre, plays);
 	    }
 	    scan.close();
+	    }
+	    catch (FileNotFoundException e) {}
     }
 
     /**
@@ -89,26 +93,28 @@ public class ReadData {
 	//disregarding users, retrieving all ArrayLists
 	//note that the HashSet is backed by the HashMap so don't modify that
 	//this is a non-destructive method
-	HashSet<> elements = map.values();
+	HashSet<ArrayList<TrackInfo>> elements = new HashSet<ArrayList<TrackInfo>>();
+	elements.addAll(userTrackMap.values());
 	//the data is now iterable
 	Iterator<ArrayList<TrackInfo>> elemIter = elements.iterator();
-	HashSet<String> genreArtists = new HashSet();
+	HashSet<String> genreArtists = new HashSet<String>();
 	while (elemIter.hasNext()) { //iterating through all ArrayList<TrackInfo>
-		ArrayList<TrackInfo> arr = elemIter.hasNext();
+		ArrayList<TrackInfo> arr = elemIter.next();
 		Iterator<TrackInfo> arrIter = arr.iterator();
 		while (arrIter.hasNext()) { //iterating through all TrackInfo
 			TrackInfo arrItem = arrIter.next();
-			if (arrItem.getGenre().equals(genre) == 0) {
-				genreArtists.add(arrItem.getArtist);
+			if (arrItem.getGenre().equals(genre)) {
+				genreArtists.add(arrItem.getArtist());
 			}
 		}
 	}
 	//this should work because HashSet is a collection
-	return new ArrayList<String>(genreArtists);
+	return (new ArrayList<String>(genreArtists));
     }
 
     public String toString() {
 	System.out.println(userTrackMap);
+	return userTrackMap.toString();
     }
 
 
