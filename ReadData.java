@@ -149,6 +149,6 @@ public class ReadData {
 	rd.toString();
 	System.out.println("Metal Artists: " + rd.listGenreArtists("Metal"));
 	System.out.println("Death Metal Artists: " + rd.listGenreArtists("Death Metal"));
-	System.out.println("Black Metal Artists: " + rd.listGenreArtists("Black Metal"));
+	System.out.println("Rock Artists: " + rd.listGenreArtists("Rock"));
     }
 }
