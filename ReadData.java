@@ -44,11 +44,18 @@ public class ReadData {
 			 String genre, int plays) {
 	ArrayList<TrackInfo> elements = map.get(user);
 	TrackInfo element = new TrackInfo(user, title, artist, album, genre, rank, plays);
+	System.out.println("Adding track...");
 	if (elements == null) {
 		elements = new ArrayList<TrackInfo>();
+		System.out.println("Created new TrackInfo ArrayList");
+		map.put(user, elements);
 	}
 	if (!elements.contains(element)) {
 		elements.add(element);
+		System.out.println("Successfully added track.");
+	}
+	else {
+		System.out.println("Track already found.");
 	}
     }
 
@@ -102,6 +109,7 @@ public class ReadData {
 	//note that the HashSet is backed by the HashMap so don't modify that
 	//this is a non-destructive method
 	HashSet<ArrayList<TrackInfo>> elements = new HashSet<ArrayList<TrackInfo>>();
+	System.out.println("Values: " + userTrackMap.values());
 	elements.addAll(userTrackMap.values());
 	//the data is now iterable
 	Iterator<ArrayList<TrackInfo>> elemIter = elements.iterator();
@@ -111,8 +119,13 @@ public class ReadData {
 		Iterator<TrackInfo> arrIter = arr.iterator();
 		while (arrIter.hasNext()) { //iterating through all TrackInfo
 			TrackInfo arrItem = arrIter.next();
+			System.out.println("Iterating through TrackInfo" + arrItem);
 			if (arrItem.getGenre().equals(genre)) {
 				genreArtists.add(arrItem.getArtist());
+				System.out.println("Found Artist" + arrItem.getArtist());
+			}
+			else {
+				System.out.println("Genre " + arrItem.getGenre() + " does not match " + genre);
 			}
 		}
 	}
@@ -134,5 +147,8 @@ public class ReadData {
 	ReadData rd = new ReadData();
 	rd.readInput("cs1122-2025.csv");
 	rd.toString();
+	System.out.println("Metal Artists: " + rd.listGenreArtists("Metal"));
+	System.out.println("Death Metal Artists: " + rd.listGenreArtists("Death Metal"));
+	System.out.println("Black Metal Artists: " + rd.listGenreArtists("Black Metal"));
     }
 }

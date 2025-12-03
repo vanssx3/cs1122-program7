@@ -41,6 +41,12 @@ public class TrackInfo {
     public TrackInfo(String user, String title, String artist, String album,
 		     String genre, int rank, int plays) {
 	setUser(user);
+	setTitle(title);
+	setArtist(artist);
+	setAlbum(album);
+	setGenre(genre);
+	setRank(rank);
+	setPlays(plays);
     }
 
     public String getUser() {
