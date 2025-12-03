@@ -67,6 +67,9 @@ public class ReadData {
 	    String user, title, artist, album, genre;
 	    int rank, plays;
 	    //if the data is properly formatted, this shouldn't error out.
+	    for (int i = 0; i < 6 && scan.hasNext(); i++) { //skipping the first 7 items (the headers)
+		scan.next();
+	    }
 	    while (scan.hasNext()) {
 		    user = scan.next();
 		    rank = Integer.parseInt(scan.next()); //this is important because
@@ -114,12 +117,13 @@ public class ReadData {
 
     public String toString() {
 	System.out.println(userTrackMap);
-	return userTrackMap.toString();
+	return null;
     }
 
 
     public static void main(String[] args) {
 	ReadData rd = new ReadData();
-	//Do your testing here!
+	rd.readInput("cs1122-2025.csv");
+	rd.toString();
     }
 }
