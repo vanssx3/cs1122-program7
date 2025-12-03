@@ -74,7 +74,7 @@ public class ReadData {
 	    //I suppose there is a way to use streams but we just learned that
 	    File inputfile = new File(filename);
 	    try(Scanner scan = new Scanner(inputfile)) {
-		    scan.useDelimiter(",|\\R");
+		    scan.useDelimiter(",|\\R"); //use a comma or a line end as delimiter
 			    String user, title, artist, album, genre;
 		    int rank, plays;
 		    //if the data is properly formatted, this shouldn't error out.
@@ -95,7 +95,7 @@ public class ReadData {
 		    }
 		    scan.close();
 	    }
-	    catch (FileNotFoundException e) {}
+	    catch (FileNotFoundException e) {System.out.println("Error attempting to read file");}
     }
 
     /**
