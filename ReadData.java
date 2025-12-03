@@ -120,7 +120,7 @@ public class ReadData {
 		while (arrIter.hasNext()) { //iterating through all TrackInfo
 			TrackInfo arrItem = arrIter.next();
 			System.out.println("Iterating through TrackInfo" + arrItem);
-			if (arrItem.getGenre().equals(genre)) {
+			if (arrItem.getGenre().equalsIgnoreCase(genre)) {
 				genreArtists.add(arrItem.getArtist());
 				System.out.println("Found Artist" + arrItem.getArtist());
 			}
