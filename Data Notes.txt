@@ -1,4 +1,4 @@
-﻿We removed all slashes and quotations, and translated all non-english characters to english. We changed all the singles album names to be the singles name. We removed any parentheses. We also made sure that if there are multiple artists on a song, they are separated by commas. If someone’s name contains a comma, we will remove it for consistency sake. 
+﻿We removed all slashes and quotations, and translated all non-english characters to english. We changed all the singles album names to be the singles name. We removed any parentheses. We also made sure that if there are multiple artists on a song, they are separated by commas. If some field contains a comma, we will replace it with a vertical bar (|) for consistency's sake. Also all numbers will be raw integers. 
 
 Genre:
 Pop

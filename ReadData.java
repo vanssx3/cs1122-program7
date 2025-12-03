@@ -44,6 +44,9 @@ public class ReadData {
 			 String genre, int plays) {
 	ArrayList<TrackInfo> elements = map.get(user);
 	TrackInfo element = new TrackInfo(user, title, artist, album, genre, rank, plays);
+	if (elements == null) {
+		elements = new ArrayList<TrackInfo>();
+	}
 	if (!elements.contains(element)) {
 		elements.add(element);
 	}
@@ -64,24 +67,26 @@ public class ReadData {
 	    //I suppose there is a way to use streams but we just learned that
 	    File inputfile = new File(filename);
 	    try(Scanner scan = new Scanner(inputfile)) {
-	    String user, title, artist, album, genre;
-	    int rank, plays;
-	    //if the data is properly formatted, this shouldn't error out.
-	    for (int i = 0; i < 6 && scan.hasNext(); i++) { //skipping the first 7 items (the headers)
-		scan.next();
-	    }
-	    while (scan.hasNext()) {
-		    user = scan.next();
-		    rank = Integer.parseInt(scan.next()); //this is important because
-					      //we don't want to skip ahead
-		    title = scan.next();
-		    artist = scan.next();
-		    genre = scan.next();
-		    album = scan.next();
-		    plays = Integer.parseInt(scan.next());
-		    addTrack(userTrackMap, user, rank, title, artist, album, genre, plays);
-	    }
-	    scan.close();
+		    scan.useDelimiter(",|\\R");
+			    String user, title, artist, album, genre;
+		    int rank, plays;
+		    //if the data is properly formatted, this shouldn't error out.
+		    for (int i = 0; i < 7 && scan.hasNext(); i++) { //skipping the first 7 items (the headers)
+			    System.out.println("Discarding: " + scan.next());
+		    }
+		    while (scan.hasNext()) {
+			    user = scan.next(); System.out.println("User: " + user);
+			    rank = Integer.parseInt(scan.next()); //this is important because
+								  //we don't want to skip ahead
+			    System.out.println("Rank: " + rank);
+			    title = scan.next(); System.out.println("Title: " + title);
+			    artist = scan.next(); System.out.println("Artist: " + artist);
+			    genre = scan.next(); System.out.println("Genre: " + genre);
+			    album = scan.next(); System.out.println("Album: " + album);
+			    plays = Integer.parseInt(scan.next()); System.out.println("Plays: " + plays);
+			    addTrack(userTrackMap, user, rank, title, artist, album, genre, plays);
+		    }
+		    scan.close();
 	    }
 	    catch (FileNotFoundException e) {}
     }
@@ -113,6 +118,10 @@ public class ReadData {
 	}
 	//this should work because HashSet is a collection
 	return (new ArrayList<String>(genreArtists));
+    }
+
+    public ReadData() {
+	userTrackMap = new HashMap<String, ArrayList<TrackInfo>>();
     }
 
     public String toString() {
