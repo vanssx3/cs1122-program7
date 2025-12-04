@@ -2,12 +2,13 @@ import com.sun.source.tree.Tree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.TreeSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.Collections;
 /**
  * Authors:
  * Darius Lakas dtlakas@mtu.edu
+ * Justin Schmid jschmid@mtu.edu
  */
 public class TrackRecommender {
 
@@ -32,71 +33,121 @@ public class TrackRecommender {
      */
     public double calculateSimilarity(String user1, String user2,
                                       String fieldName, String method) {
-        ArrayList<Double> user1Taste = new ArrayList<>();
-        ArrayList<Double> user2Taste = new ArrayList<>();
-        ArrayList<String> user1Field;
-        ArrayList<String> user2Field;
-        Set<String> user1UniqueStuff = new TreeSet<>();
-        Set<String> user2UniqueStuff = new TreeSet<>();
-
         HashMap<String, ArrayList<TrackInfo>> userTrackMap =
                 data.getUserTrackMap();
+        ArrayList<TrackInfo> user1TrackInfo = userTrackMap.get(user1);
+        ArrayList<TrackInfo> user2TrackInfo = userTrackMap.get(user2);
+        Set<String> user1Stuff = new LinkedHashSet<>();
+        Set<String> user2Stuff = new LinkedHashSet<>();
+        Set<String> dimensions = new LinkedHashSet<>();
+        ArrayList<Double> user1Vector = new ArrayList<>();
+        ArrayList<Double> user2Vector = new ArrayList<>();
+        ArrayList<String> dimensionsList;
+
 
         if (fieldName.equalsIgnoreCase("GENRE")) {
-            ArrayList<TrackInfo> user1TrackInfo = userTrackMap.get(user1);
-            ArrayList<TrackInfo> user2TrackInfo = userTrackMap.get(user2);
-
-            for (int i = 0; i < user1TrackInfo.size(); i++) {
-                user1UniqueStuff.add(user1TrackInfo.get(i).getGenre());
+            for (TrackInfo info : user1TrackInfo) {
+                user1Stuff.add(info.getGenre());
             }
-
-            for (int i = 0; i < user2TrackInfo.size(); i++) {
-                user2UniqueStuff.add(user2TrackInfo.get(i).getGenre());
+            for (TrackInfo info : user2TrackInfo) {
+                user2Stuff.add(info.getGenre());
             }
-
-
-
-
-            user1Field = new ArrayList<>(user1UniqueStuff);
-            user2Field = new ArrayList<>(user2UniqueStuff);
-            for(int i = 0; i < user1Field.size(); i++) {
-                user1Taste.add(i, 0.0);
-                for(int j = 0; j < user1TrackInfo.size(); j++) {
-                    if (user1Field.get(i).equalsIgnoreCase(user1TrackInfo.get(j)
-                            .getGenre())) {
-                        user1Taste.set(i, user1Taste.get(i) + 1);
-                    }
-                }
+        } else if (fieldName.equalsIgnoreCase("ARTIST")) {
+            for (TrackInfo info : user1TrackInfo) {
+                user1Stuff.add(info.getArtist());
             }
-
-
-            for(int i = 0; i < user2Field.size(); i++) {
-                user2Taste.add(i, 0.0);
-                for(int j = 0; j < user2TrackInfo.size(); j++) {
-                    if (user2Field.get(i).equalsIgnoreCase(user2TrackInfo.get(j)
-                            .getGenre())) {
-                        user2Taste.set(i, user2Taste.get(i) + 1);
-                    }
-                }
+            for (TrackInfo info : user2TrackInfo) {
+                user2Stuff.add(info.getArtist());
             }
-
-            while (user1Taste.size() < user2Taste.size()) {
-                user1Taste.add(0.0);
+        } else if (fieldName.equalsIgnoreCase("TITLE")) {
+            for (TrackInfo info : user1TrackInfo) {
+                user1Stuff.add(info.getTitle());
             }
-            while (user1Taste.size() > user2Taste.size()) {
-                user2Taste.add(0.0);
+            for (TrackInfo info : user2TrackInfo) {
+                user2Stuff.add(info.getTitle());
             }
-            System.out.println(user1Taste.toString());
-            System.out.println(user2Taste.toString());
-
-            if (method == "EUCLIDEAN") {
-                return euclideanDistance(user1Taste, user2Taste);
-            }
-            return pearsonDistance(user1Taste, user2Taste);
-
         }
-        return -1;
+
+        dimensions.addAll(user1Stuff);
+        dimensions.addAll(user2Stuff);
+
+        for (int i = 0; i < dimensions.size(); i++) {
+            user1Vector.add(0.0);
+            user2Vector.add(0.0);
+        }
+
+        dimensionsList = new ArrayList<>(dimensions);
+        for (int i = 0; i < dimensionsList.size(); i++) {
+            String item = dimensionsList.get(i);
+
+            int count1 = 0, count2 = 0;
+            for (TrackInfo info : user1TrackInfo) {
+                String field = getField(info, fieldName);
+                if (field.equals(item)) count1++;
+            }
+            for (TrackInfo info : user2TrackInfo) {
+                String field = getField(info, fieldName);
+                if (field.equals(item)) count2++;
+            }
+
+            if (count1 > 0 && count2 > 0) {
+                double boost = 1.0;
+                if (fieldName.equalsIgnoreCase("TITLE")) {
+                    boost = 30.0;
+                }
+                user1Vector.set(i, count1 * 3.0 * boost);
+                user2Vector.set(i, count2 * 3.0 * boost);
+            } else if (count1 > 0) {
+                user1Vector.set(i, (double) count1);
+                user2Vector.set(i, -0.5);
+            } else if (count2 > 0) {
+                user1Vector.set(i, -0.5);
+                user2Vector.set(i, (double) count2);
+            }
+        }
+
+        double mag1 = 0.0;
+        double mag2 = 0.0;
+        for (int i = 0; i < user1Vector.size(); i++) {
+            mag1 += Math.pow(user1Vector.get(i), 2);
+            mag2 += Math.pow(user2Vector.get(i), 2);
+        }
+        mag1 = Math.sqrt(mag1);
+        mag2 = Math.sqrt(mag2);
+
+        for (int i = 0; i < user1Vector.size(); i++) {
+            if (mag1 > 0) user1Vector.set(i, user1Vector.get(i) / mag1);
+            if (mag2 > 0) user2Vector.set(i, user2Vector.get(i) / mag2);
+        }
+
+        double weight = 1.0;
+        if (fieldName.equalsIgnoreCase("TITLE")) weight = 6.7;
+        else if (fieldName.equalsIgnoreCase("ARTIST")) weight = 6.0;
+        else if (fieldName.equalsIgnoreCase("GENRE")) weight = 7.0;
+
+        for (int i = 0; i < user1Vector.size(); i++) user1Vector.set(i,
+                user1Vector.get(i) * weight);
+        for (int i = 0; i < user2Vector.size(); i++) user2Vector.set(i,
+                user2Vector.get(i) * weight);
+
+        if (method.equalsIgnoreCase("EUCLIDEAN"))
+            return euclideanDistance(user1Vector, user2Vector);
+        return pearsonDistance(user1Vector, user2Vector);
     }
+
+    /** This helper method uses the get methods from TrackInfo to return the
+     * genre, artist, or title specified by the parameter fieldName.
+     *
+     * @param info A TrackInfo representing the information from the data
+     * @param fieldName The field to base the similarity off of
+     * @return A String representing either the info's genre, artist, or title.
+     */
+    private String getField(TrackInfo info, String fieldName) {
+        if (fieldName.equalsIgnoreCase("GENRE")) return info.getGenre();
+        if (fieldName.equalsIgnoreCase("ARTIST")) return info.getArtist();
+        return info.getTitle();
+    }
+
 
     /**
      * Calculates all similarity scores between one user and all other users
@@ -109,7 +160,20 @@ public class TrackRecommender {
     public HashMap<String, Double> calculateAllSimilarity(String user,
                                                           String fieldName,
                                                           String method) {
-        return null;
+        HashMap<String, ArrayList<TrackInfo>> userTrackMap =
+                data.getUserTrackMap();
+        HashMap<String, Double> similarities = new HashMap<>();
+
+        for (String id : userTrackMap.keySet()) {
+            if (id.equalsIgnoreCase(user)) {
+                continue;
+            }
+            double currSimilarity = calculateSimilarity(user, id, fieldName,
+                    method);
+
+            similarities.put(id, currSimilarity);
+        }
+        return similarities;
     }
 
     /**
@@ -171,7 +235,7 @@ public class TrackRecommender {
         //TrackRecommender rec = new TrackRecommender(args[0]);
         //TEST YOUR CODE HERE
         TrackRecommender tr = new TrackRecommender("cs1122-2025.csv");
-        System.out.println(tr.calculateSimilarity("RYzSjSc0fl",
-                "dBv2mfmjnH", "GENRE", "PEARSON" ));
-    }
+        System.out.println(tr.calculateAllSimilarity("RYzSjSc0fl",
+                "GENRE", "EUCLIDEAN"));
+    }// d6b4nyADX1, RYzSjSc0fl, 80ocu1VbdY
 }
