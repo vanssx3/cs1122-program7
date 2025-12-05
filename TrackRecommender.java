@@ -177,7 +177,8 @@ public class TrackRecommender {
     }
 
     /**
-     * Generates a playlist based on a user of a specified number of tracks.
+     * Generates a playlist based on a user of a specified number of tracks based
+     * on tracks from users with high similarities between user.
      *
      * @param user           The user
      * @param fieldName      The field to base the similarity off of
@@ -187,7 +188,38 @@ public class TrackRecommender {
     public ArrayList<TrackInfo> makePlaylist(String user, String fieldName,
                                              String method,
                                              int numberOfTracks) {
-        return null;
+        HashMap<String, Double> similarities = calculateAllSimilarity(user, 
+                                                fieldName, method);
+        HashMap<String, ArrayList<TrackInfo>> userTrackMap =
+                    data.getUserTrackMap();
+        ArrayList<TrackInfo> personalizedPlaylist = new ArrayList<TrackInfo>();
+        int usersNeeded = 0;
+        if(numberOfTracks > 0) {
+            usersNeeded = ((numberOfTracks/10) + 1);
+        } else {
+            return null;
+        }
+        while (usersNeeded > 0) {
+            String maxSimilarityUser = null;
+            double maxSimilarityScore = 0.0;
+            for (String id : similarities.keySet()) {
+                if (similarities.get(id) > maxSimilarityScore) {
+                    if(id != user) {
+                        maxSimilarityScore = similarities.get(id);
+                        maxSimilarityUser = id;
+                    }
+                }
+            }
+
+            ArrayList<TrackInfo> maxUserTrackInfo = userTrackMap.get(
+                    maxSimilarityUser);
+            for(TrackInfo i : maxUserTrackInfo) {
+                personalizedPlaylist.add(i);
+            }
+            similarities.remove(maxSimilarityUser);
+            usersNeeded--;
+        }                             
+        return personalizedPlaylist;
     }
 
     /**
